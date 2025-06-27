@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="test.css">
+    <style>
+        /*--------------*/
+        .highlight,
+        .btn {
+            background-color: #3573b7;
+            border-radius: 20px;
+
+            padding: 4px 8px;
+            /* เพิ่มช่องว่างเล็กน้อยรอบข้อความ */
+            align-items: center;
+        }
+        /*--------------*/
+
+        /*--------------*/
+        .line,
+        hr {
+            width: 150px;
+            height: 4px;
+            background: #fc036b;
+            margin: 10px auto;
+            border-radius: 5px;
+            border: none;
+        }
+        /*--------------*/
+
+        /*--------------*/
+        #columns {
+            column-width: 320px;
+            column-gap: 15px;
+            width: 90%;
+            max-width: 1100px;
+            margin: 50px auto;
+        }
+
+        
+        #columns figure {
+            background: #efefef;
+            border: 2px solid #fcfcfc;
+            box-shadow: 0 1px 2px rgba(35, 25, 25, .4);
+            margin: 0 2px 15px;
+            padding: 15px;
+            padding-bottom: 10px;
+            transition: .4s ease-in-out;
+            display: inline-block;
+            /*column-break-inside: avoid; ไม่ใส่ก็ได้*/
+        }
+
+        #columns figure img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 15px;
+            margin-bottom: 5px;
+        }
+
+        #columns:hover figure:not(:hover) {
+            opacity: 0.4;
+        }
+        /*--------------*/
+
+        /*--------------*/
+        .container{
+            padding: 2rem;
+        }
+    
+        .slider{
+            display: flex;
+            aspect-ratio: 21 / 9; /*กำหนดขาดรูปเป็นอัตราส่วน*/
+            scroll-snap-type: mandatory; /*mandatory แปลว่า หยุดตรงจุด*/
+            scroll-behavior: smooth;
+            box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
+
+            overflow-x: auto; /*ทำให้เกิดแถบเลื่อน*/
+
+            /* ซ่อนแถบเลื่อน */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        /* ซ่อนแถบเลื่อน */
+        .slider::-webkit-scrollbar {
+            display: none; /* Chrome, Safari */
+        }
+
+        .slider img{
+            flex: 1 0 100%;
+            scroll-snap-align: start;
+            object-fit: cover;
+        }
+
+        /*ตุ่มเลื่อน*/
+        .slider-wrapper{
+            position: relative;
+            margin: 0 auto;
+        }
+        .slider-nav{
+            display: flex;
+            column-gap: 1rem;
+            position: absolute;
+            bottom: 1.25rem;
+            left: 50%;
+            transform: translate(-50%);
+            z-index: 1;
+        }
+
+        .slider-nav a{
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
+            background-color: #fff;
+            opacity: 0.75;
+            transition: opacity ease 250ms;
+        }
+        .slider-nav a:hover{
+            opacity: 1;
+        }
+        /*--------------*/
+
+        /*--------------*/
+         #card-area {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .box-area {
+            display: flex;
+            flex-wrap: wrap; 
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .box {
+            position: relative;
+            height: 300px;  /*กำหนดขนาดรูป*/
+            border-radius: 10px;
+            overflow: hidden; /*ทำให้มองไม่ของที่อยู่ใน div ย่อย*/
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+
+            flex: 1 1 250px;
+            min-width: 250px;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+        }
+
+        .box img {
+            width: 100%;
+            /*ตีเต็ม 100% ของ 300px ที่กำหนดไว้ใน .box*/
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            /*พลักให้อยู่ล่างกล่อง*/
+            transition: transform 0.3s ease;
+        }
+
+        .box:hover .overlay {
+            transform: translateY(0);
+            /*popup ขึ้นมา*/
+        }
+
+        .overlay h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .overlay p {
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .overlay a {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .overlay a:hover {
+            background-color: #0056b3;
+        }
+        /*--------------*/
+
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <!----------->
+    <span class="highlight">hello</span>
+    <span class="highlight">hello apin</span>
+
+    <a href="#" class="btn">button</a>
+
+    <a href="https://www.google.com/" 
+                onclick="alert('คลิกแล้ว! ปกติจะไปที่ pixel google');" 
+                target="_blank"
+                title="กด"
+    >click
+    </a>
+    <!----------->
+
+    <!----------->
+    <hr>
+    <div class="line"></div>
+    <!----------->
+
+    <!----------->
+       <section id="columns">
+            <figure>
+                <a href="https://pixabay.com/th/" target="_blank"><img src="https://cdn.pixabay.com/photo/2025/06/19/16/21/adventure-9669330_1280.jpg" /></a>
+                <figcaption>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Dignissimos animi natus reprehenderit asperiores veritatis voluptas 
+                    sint inventore mollitia quos impedit!
+                </figcaption>
+            </figure>
+
+            <figure>
+                <a href="https://pixabay.com/th/" target="_blank"><img src="https://cdn.pixabay.com/photo/2025/06/16/14/06/ring-necked-parakeet-9663360_1280.jpg" /></a>
+                <figcaption>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Dignissimos animi natus reprehenderit asperiores veritatis voluptas 
+                    sint inventore mollitia quos impedit!
+                </figcaption>
+            </figure>
+
+            <figure>
+                <a href="https://pixabay.com/th/" target="_blank"><img src="https://cdn.pixabay.com/photo/2025/06/19/16/21/adventure-9669330_1280.jpg" /></a>
+                <figcaption>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Dignissimos animi natus reprehenderit asperiores veritatis voluptas 
+                    sint inventore mollitia quos impedit!
+                </figcaption>
+            </figure>
+
+            <figure>
+                <a href="https://pixabay.com/th/" target="_blank"><img src="https://cdn.pixabay.com/photo/2025/06/16/14/06/ring-necked-parakeet-9663360_1280.jpg" /></a>
+                <figcaption>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Dignissimos animi natus reprehenderit asperiores veritatis voluptas 
+                    sint inventore mollitia quos impedit!
+                </figcaption>
+            </figure>
+
+            <figure>
+                <a href="https://pixabay.com/th/" target="_blank"><img src="https://cdn.pixabay.com/photo/2025/06/19/16/21/adventure-9669330_1280.jpg" /></a>
+                <figcaption>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Dignissimos animi natus reprehenderit asperiores veritatis voluptas 
+                    sint inventore mollitia quos impedit!
+                </figcaption>
+            </figure>
+
+            <figure>
+                <a href="https://pixabay.com/th/" target="_blank"><img src="https://cdn.pixabay.com/photo/2025/06/16/14/06/ring-necked-parakeet-9663360_1280.jpg" /></a>
+                <figcaption>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Dignissimos animi natus reprehenderit asperiores veritatis voluptas 
+                    sint inventore mollitia quos impedit!
+                </figcaption>
+            </figure>
+
+            <figure>
+                <a href="https://pixabay.com/th/" target="_blank"><img src="https://cdn.pixabay.com/photo/2025/06/19/16/21/adventure-9669330_1280.jpg" /></a>
+                <figcaption>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Dignissimos animi natus reprehenderit asperiores veritatis voluptas 
+                    sint inventore mollitia quos impedit!
+                </figcaption>
+            </figure>
+
+            <figure>
+                <a href="https://pixabay.com/th/" target="_blank"><img src="https://cdn.pixabay.com/photo/2025/06/16/14/06/ring-necked-parakeet-9663360_1280.jpg" /></a>
+                <figcaption>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Dignissimos animi natus reprehenderit asperiores veritatis voluptas 
+                    sint inventore mollitia quos impedit!
+                </figcaption>
+            </figure>
+
+            <figure>
+                <a href="https://pixabay.com/th/" target="_blank"><img src="https://cdn.pixabay.com/photo/2025/06/19/16/21/adventure-9669330_1280.jpg" /></a>
+                <figcaption>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Dignissimos animi natus reprehenderit asperiores veritatis voluptas 
+                    sint inventore mollitia quos impedit!
+                </figcaption>
+            </figure>
+
+       </section>
+    <!----------->
+    
+    <!----------->
+    <section class="container">
+        <div class="slider-wrapper">
+            <div class="slider">
+                <img id="slide-1" src="https://cdn.pixabay.com/photo/2025/06/16/14/06/ring-necked-parakeet-9663360_1280.jpg" alt="parakeet">
+                <img id="slide-2" src="https://cdn.pixabay.com/photo/2025/04/28/17/02/acacia-9565430_1280.jpg" alt="acacia">
+                <img id="slide-3" src="https://cdn.pixabay.com/photo/2025/06/18/08/31/wheat-9666681_1280.jpg" alt="wheat">
+            </div>
+
+            <div class="slider-nav">
+                <a href="#slide-1"></a>
+                <a href="#slide-2"></a>
+                <a href="#slide-3"></a>
+            </div>
+        </div>
+    </section>
+    <!----------->
+    
+    <!----------->
+      <div id="card-area">
+        <div class="box-area">
+            <div class="box">
+                <img src="https://cdn.pixabay.com/photo/2023/01/08/09/36/mountain-7704817_1280.jpg" alt="Kayaking">
+                <div class="overlay">
+                    <h3>Kayaking</h3>
+                    <p>Paddle through crystal clear waters and discover hidden coves and wildlife.</p>
+                    <a href="#">Book now</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="https://cdn.pixabay.com/photo/2022/10/07/11/02/autumn-7504820_1280.jpg" alt="Rock Climbing">
+                <div class="overlay">
+                    <h3>Rock Climbing</h3>
+                    <p>Challenge yourself with our rock climbing adventures suitable for all skill levels.</p>
+                    <a href="#">Book now</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="https://cdn.pixabay.com/photo/2025/05/21/15/08/classic-cars-9614046_1280.jpg" alt="Cycling">
+                <div class="overlay">
+                    <h3>Mountain Biking</h3>
+                    <p>Ride through scenic mountain trails with our high-quality bikes and safety equipment.</p>
+                    <a href="#">Book now</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!----------->
+
+</body>
+
+</html>
