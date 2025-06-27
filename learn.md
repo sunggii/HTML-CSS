@@ -222,6 +222,7 @@ img:hover {
 ![alt text](./img/line.png)
 
 ## จัดรูป แบบ pinteres ด้วย css
+ref code: [youtube](https://youtu.be/iweHJ7Gqjxs?si=I95vDPVxQlXVtcBG)
 ```html
 <figure>
      <a href="https://pixabay.com/th/" target="_blank">
@@ -402,7 +403,7 @@ img:hover {
 ```
 
 ## slide img
-ref code: [yutube](https://youtu.be/McPdzhLRzCg?si=XgigkiKUb4Yeb-wx)
+ref code: [youtube](https://youtu.be/McPdzhLRzCg?si=XgigkiKUb4Yeb-wx)
 
 ![alt text](./img/slide.png)
 
