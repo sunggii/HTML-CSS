@@ -1,5 +1,114 @@
 # What I learned
-## note
+## CSS ที่ต้องรู้
+## 1. css seletor เราจะอต่งอะไรให้ select เข้าไป
+
+ วิธี select มี 3 แบบ
+
+* เข้าถึง tag(DOM)
+        **ตัวอย่าง** เข้าถึง tag ```body```
+    ```css
+     body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+    ```
+* เข้าถึง id
+        **ตัวอย่าง** เข้าถึง ```#item```
+        ```css
+        #item{
+            background: #eee;
+        }
+        ```
+* เข้าถึง class 
+        **ตัวอย่าง** เข้าถึง ```.container```
+        ```css
+            .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        ```
+
+## 2. ```<div>``` vs ```<span>```
+* ```<div>``` จะขึ้นบรรทัดใหม่ นิยมใช้เป็นเหมือนกล่องไว้ครบเพื่อแต่ง style
+* ```<span>``` จะไม่ขึ้นบรรทัดใหม่ ส่วนตัวเอาไว้ใช้คู่กับ ```<p>``` การณีอยากแต่งแค่บางส่วนของประโยค
+    **ตัวอย่าง**
+    ```html
+    <p>Copyright &copy;2025 Designed by
+        <span><a href="#header">Mister S</a></span>
+    </p>
+    ```
+## 3. ```margin``` vs ```padding```
+![alt text](img/margin-padding.jpg)
+
+จะเห็นว่าทั้ง ```margin``` และ ```padding``` เอาไว้ใช้เพิ่ม space ให้กล่อง
+* margin -> space นอกกล่อง ใช้เลื่อนทั้งกล่อง จะกำหนดแยกหรือรวมในบรรทัดเดียวก็ได้
+
+```css
+/*     บนทล่าง  ซ้ายขวา*/
+margin: 10px   5px;
+```
+* padding -> space ในกล่อง สามารถกำหนดได้เหมือน margin
+
+## 4. position
+* static -> เป็น defualt
+* relative -> ผลักออก
+* absolute -> กำหนดตำแหน่งทั้งหน้าจอ
+* fixed -> ตำแหน่งจะไม่เปลี่นแม้ scroll
+* sticky -> เหมือน fixed แต่จะตาม scroll เฉพาะใน container ของมัน
+
+## 5. เปรียบเทียบขนาด font
+
+| HTML Tag | ขนาด (em/rem) | ขนาด (px) โดยประมาณ |
+| -------- | ------------- | ------------------- |
+| `<h1>`   | 2.0rem        | 32px                |
+| `<h2>`   | 1.5rem        | 24px                |
+| `<h3>`   | 1.17rem       | \~18.72px           |
+| `<h4>`   | 1.0rem        | 16px                |
+| `<h5>`   | 0.83rem       | \~13.28px           |
+| `<h6>`   | 0.67rem       | \~10.72px           |
+
+## 6. หน่วยในในโลก CSS
+    * % -> % ของกล่อง(parent)
+    * vw(width), vh(height) -> ขนาดเป็นไปตามหน้าจอ
+    * em -> ขาดเป็น x เท่าของแม่(สมมุติแม่ = 12px) เช่น 2em = 12*2 = 24px
+    * rem -> ขาดเป็น x เท่าของ root(default = 16px) เช่น 3rem = 16*3 = 48px
+
+`
+## 7. คำสัง css ที่ใช้ในการจัดของ
+เกมฝึกความเข้าใจ [flexboxfroggy](https://flexboxfroggy.com/#th)
+
+| คำสั่ง CSS               | ใช้กับอะไร      | ทำหน้าที่อะไร                                                |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| `display: flex;`         | container (แม่) | กำหนดให้ใช้ flexbox กับลูกภายใน                              |
+| `justify-content`        | container (แม่) | จัดตำแหน่ง **แนวนอน** ของลูก (ตามแกนหลัก)                    |
+| └ `flex-start`           |                 | ชิดซ้าย                                                      |
+| └ `center`               |                 | อยู่กลางแนวนอน                                               |
+| └ `flex-end`             |                 | ชิดขวา                                                       |
+| └ `space-between`        |                 | กระจายเต็มพื้นที่ มีช่องว่างระหว่าง แต่ไม่มีตรงขอบ           |
+| └ `space-around`         |                 | กระจาย มีช่องว่างรอบ ๆ ทุกด้าน                               |
+| └ `space-evenly`         |                 | ช่องว่างระหว่างเท่ากันทุกส่วน                                |
+| `align-items`            | container (แม่) | จัดตำแหน่ง **แนวตั้ง** ของลูก (ตามแกนขวาง)                   |
+| └ `flex-start`           |                 | ชิดบน                                                        |
+| └ `center`               |                 | อยู่กลางแนวตั้ง                                              |
+| └ `flex-end`             |                 | ชิดล่าง                                                      |
+| └ `stretch` (default)    |                 | ยืดความสูงเท่ากันกับ container                               |
+| `align-self`             | ลูก (เฉพาะตัว)  | จัดตำแหน่งแนวตั้งเฉพาะตัว (override `align-items`)           |
+| `justify-self` (ใน grid) | ลูก (เฉพาะตัว)  | จัดแนวนอนของตัวเองใน Grid                                    |
+| `align-content`          | container (แม่) | จัดหลายแถวใน flex/grid ถ้ามีหลายบรรทัด (ใช้ร่วมกับ wrap ได้) |
+
+## 8.css layout
+| เทคนิค Layout    | คำสั่งหลัก                                         | ใช้ทำอะไร                                | จุดเด่น                              | ข้อควรระวัง                             |
+| ---------------- | -------------------------------------------------- | ---------------------------------------- | ------------------------------------ | --------------------------------------- |
+| **Flexbox**      | `display: flex;`                                   | จัดเรียงแนวแถว/แนวคอลัมน์                | ง่าย, ยืดหยุ่น, เหมาะกับแนวเดียว     | ไม่เหมาะกับเลย์เอาต์หลายแถว/ซับซ้อน     |
+| **Grid**         | `display: grid;`                                   | จัดวางแบบตาราง (row/column)              | เหมาะกับเลย์เอาต์ซับซ้อน, หลายบรรทัด | คำสั่งเยอะกว่า flexbox                  |
+| **Float**        | `float: left/right;`                               | ลอยซ้าย/ขวา ใช้จัดเลย์เอาต์แบบเก่า       | ใช้ได้ทุกเบราว์เซอร์                 | มีปัญหากับการจัดการความสูงของ container |
+| **Position**     | `position: static/relative/absolute/fixed/sticky;` | จัดตำแหน่งแบบอิสระ                       | ควบคุมตำแหน่งได้แม่นยำ               | ซ้อนทับกันง่าย, ต้องคำนวณเอง            |
+| **Inline-Block** | `display: inline-block;`                           | เรียงในแนวนอนเหมือน inline แต่จัดขนาดได้ | ใช้ง่าย, ไม่ใช้ float                | ช่องว่าง (white space) ระหว่างบล็อก     |
+| **Multi-Column** | `column-count`, `column-gap`                       | แบ่งคอลัมน์อัตโนมัติในเนื้อหา            | เหมาะกับบทความ/ข้อความยาว            | ควบคุมขนาดและเนื้อหายากกว่าตาราง        |
+
+## css เพิ่มเติม
 1. import font จาก [google font](https://fonts.google.com/)
 
 ![alt text](./img/font.png)
@@ -13,7 +122,6 @@
     font-family: 'Poppins'; /*ชื่อ font ที่ import มา*/
 }
 ```
-
 2. set up
 ```css
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
@@ -21,7 +129,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /**/
+    box-sizing: border-box; /*กำหนดให้กล่องเป็นขนาดจริง ไม่รวม margin padding*/
     font-family: 'Poppins';
 }
 
@@ -32,48 +140,15 @@ ul {
     list-style: none; /*li ไม่มีตุ่ม*/
 }
 
-/*คิดว่าไม่มีก็ได้*/
-body , html {
-    overflow-x: hidden; /*กำหนดไม่ให้เลื่อนจอ ซ้าย-ขวา*/
-}
 ```
-
+------------------------------
 3. css ไล่สี
 ```css
 background: linear-gradient(135deg, #ff9a9e, #fecfef);
 ```
+------------------------------
 
-4. ขนาดของ h1 - h6
-
-| Tag  | ขนาดโดยประมาณ (px)    |
-| ---- | --------------------- |
-| `h1` | **32px** (หรือ 2em)   |
-| `h2` | **24px** (หรือ 1.5em) |
-| `h3` | **18.72px**           |
-| `h4` | **16px**              |
-| `h5` | **13.28px**           |
-| `h6` | **10.72px**           |
-
-
-5. เพิ่มลูกเล่นตอน hover
-```css
-.ctn:hover {
-    background: whitesmoke;
-    color: #fc036b;
-
-    /*เพิ่มเงา*/
-    box-shadow: 2px 2px 5px #00000056;
-}
-```
-
-6. css เว้นช่องไฟ
-```css
-p {
-  word-spacing: 5px; /*ทำให้มีช่องว่างระหว่าคำ*/
-}
-```
-
-7. ใส่ vdo  ดูที่ไฟล์ ```clude-iframe```
+4. ใส่ vdo  ดูที่ไฟล์ ```clude-iframe```
 
 
 ## .container vs กำหนดที่ ```<body>```
@@ -224,16 +299,18 @@ img:hover {
 ## จัดรูป แบบ pinteres ด้วย css
 ref code: [youtube](https://youtu.be/iweHJ7Gqjxs?si=I95vDPVxQlXVtcBG)
 ```html
-<figure>
-     <a href="https://pixabay.com/th/" target="_blank">
-        <img src="https://cdn.pixabay.com/photo/2025/06/19/16/adventure-9669330_1280.jpg" />
-    </a>
+<section id="columns">
+    <figure>
+        <a href="https://pixabay.com/th/" target="_blank">
+            <img src="https://cdn.pixabay.com/photo/2025/06/19/16/adventure-9669330_1280.jpg" />
+        </a>
 
-    <figcaption>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-        Dignissimos animi natus reprehenderit asperiores veritatis voluptas 
-        sint inventore mollitia quos impedit!
-    </figcaption>
-</figure>
+        <figcaption>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+         Dignissimos animi natus reprehenderit asperiores veritatis voluptas 
+            sint inventore mollitia quos impedit!
+        </figcaption>
+    </figure>
+</section>
 ```
 
 ```css
@@ -435,36 +512,45 @@ ref code: [youtube](https://youtu.be/McPdzhLRzCg?si=XgigkiKUb4Yeb-wx)
     <!----------->
 ```
 ```css
-        .slider{
+        /*max-width จำเป็นไม่งั้นใหญ่เกิน*/
+        .container {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .slider {
             display: flex;
-            aspect-ratio: 21 / 9; /*กำหนดขาดรูปเป็นอัตราส่วน*/
-            scroll-snap-type: mandatory; /*mandatory แปลว่า หยุดตรงจุด*/
+            aspect-ratio: 3 / 4; /* ขนาดรูป*/
+            scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
             box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
-
-            overflow-x: auto; /*ทำให้เกิดแถบเลื่อน*/
+            border-radius: 12px;
+            overflow-x: auto;
 
             /* ซ่อนแถบเลื่อน */
             scrollbar-width: none;
             -ms-overflow-style: none;
         }
+
         /* ซ่อนแถบเลื่อน */
         .slider::-webkit-scrollbar {
-            display: none; /* Chrome, Safari */
+            display: none;
         }
 
-        .slider img{
+        .slider img {
             flex: 1 0 100%;
             scroll-snap-align: start;
             object-fit: cover;
+            border-radius: 12px;
         }
 
-        /*ตุ่มเลื่อน*/
-        .slider-wrapper{
+        /* ตุ่มเลื่อน */
+        .slider-wrapper {
             position: relative;
             margin: 0 auto;
         }
-        .slider-nav{
+
+        .slider-nav {
             display: flex;
             column-gap: 1rem;
             position: absolute;
@@ -474,16 +560,25 @@ ref code: [youtube](https://youtu.be/McPdzhLRzCg?si=XgigkiKUb4Yeb-wx)
             z-index: 1;
         }
 
-        .slider-nav a{
-            width: 0.5rem;
-            height: 0.5rem;
+        .slider-nav a {
+            /* ขนาดตุ่มเลื่อน  */
+            width: 0.4rem;
+            height: 0.4rem;
             border-radius: 50%;
             background-color: #fff;
-            opacity: 0.75;
-            transition: opacity ease 250ms;
+            opacity: 0.7;
+            transition: all ease 250ms;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
-        .slider-nav a:hover{
+
+        .slider-nav a:hover {
             opacity: 1;
+            transform: scale(1.2);
+        }
+
+        /* เพิ่มเอฟเฟกต์เมื่อคลิก */
+        .slider-nav a:active {
+            transform: scale(0.9);
         }
         /*--------------*/
 ```
