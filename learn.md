@@ -5,30 +5,36 @@
  วิธี select มี 3 แบบ
 
  ### เข้าถึง tag(DOM)
-        **ตัวอย่าง** เข้าถึง tag ```body```
-    ```css
-     body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
-    ```
+
+**ตัวอย่าง** เข้าถึง tag ```body```
+
+ ```css
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 40px 20px;
+    }
+```
 ### เข้าถึง id
-        **ตัวอย่าง** เข้าถึง ```#item```
-        ```css
-        #item{
-            background: #eee;
-        }
-        ```
+
+**ตัวอย่าง** เข้าถึง ```#item```
+
+```css
+    #item{
+        background: #eee;
+    }
+ ```
 ###  เข้าถึง class 
-        **ตัวอย่าง** เข้าถึง ```.container```
-        ```css
-            .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        ```
+
+**ตัวอย่าง** เข้าถึง ```.container```
+
+```css
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+ ```
 ## 2. CSS selector มี 5 แบบ (1-2 ใช้บ่อย)
 
 ### 1. แม่-ลูก (เว้นวรรค)
