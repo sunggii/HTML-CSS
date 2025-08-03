@@ -771,7 +771,34 @@ ref code: [youtube](https://youtu.be/McPdzhLRzCg?si=XgigkiKUb4Yeb-wx)
         }
         /*--------------*/
 ```
+## Responsive
+เอาไว้เป็นแนวทาง 
+* [material.io](https://m3.material.io/foundations/layout/applying-layout/window-size-classes)
+* [tailwindcss](https://tailwindcss.com/docs/responsive-design)
 
+    * 640px  mobile
+
+    * 768px  tablet
+
+    * มากกว่า 768px destop(1024)  desingหลัก
+
+## breakpoint (@media screen)
+* ```(max-width: 768px)``` แปลว่าหน้าจอที่ใหญืที่สุดที่ยังทำ cssนั้น (background-color: blue;) อยู่
+
+```html
+<div class="container">
+    breakpoint
+</div>
+```
+
+```css
+/*ต้องเว้นวรรคให้เป๊ะด้วย*/
+ @media screen and (max-width: 768px){
+    .container{
+        background-color: blue;
+    }
+}
+```
 
 
 
